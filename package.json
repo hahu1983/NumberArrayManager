@@ -1,0 +1,38 @@
+{
+  "name": "numberarraymanager",
+  "version": "0.0.1",
+  "description": "This packages manages number arrays by name. You can add arrays by name, ad elements to the arrays (and the values are unique automatically) and it checks if one or all, or some values of a given array are in the requested array.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "mocha --reporter spec",
+    "test2": "mocha --require ts-node/register --reporter spec lib/**/*.spec.ts",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hahu1983/NumberArrayManager.git"
+  },
+  "keywords": [
+    "number",
+    "array",
+    "number-array",
+    "manager",
+    "unique",
+    "values"
+  ],
+  "author": "Hauke Huchzermeyer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hahu1983/NumberArrayManager/issues"
+  },
+  "homepage": "https://github.com/hahu1983/NumberArrayManager#readme",
+  "devDependencies": {
+    "@types/chai": "^4.3.1",
+    "@types/mocha": "^9.1.1",
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0",
+    "ts-node": "^10.8.2",
+    "typescript": "^4.7.4"
+  }
+}
