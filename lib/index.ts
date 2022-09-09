@@ -9,16 +9,21 @@ export default class NumberArrayManager {
     const names = typeof name === 'string' ? [name] : name
     for (let i = 0, m = names.length; i < m; i++) {
       let n = names[i]
-      if (!this.arrs.some(a => {
+      let nameFound = false
+      for (let j = 0, o = this.arrs.length; j < o; j++) {
+        let a = this.arrs[j]
         if (a.name === n) {
-          ids.forEach(i => {
-            if (a.arr.indexOf(i) === -1) {
-              a.arr.push(i)
+          for (let k = 0, p = ids.length; k < p; k++) {
+            let id = ids[k]
+            if (a.arr.indexOf(id) === -1) {
+              a.arr.push(id)
             }
-          })
-          return true
+          }
+          nameFound = true
+          break
         }
-      })) {
+      }
+      if (!nameFound) {
         this.arrs.push({
           name: n,
           arr: ids
