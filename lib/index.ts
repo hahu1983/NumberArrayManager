@@ -5,21 +5,25 @@ type NumArr = {
 export default class NumberArrayManager {
   arrs: NumArr[] = []
 
-  public add(name: string, ids: number[]): void {
-    if (!this.arrs.some(a => {
-      if (a.name === name) {
-        ids.forEach(i => {
-          if (a.arr.indexOf(i) === -1) {
-            a.arr.push(i)
-          }
+  public add(name: string | string[], ids: number[]): void {
+    const names = typeof name === 'string' ? [name] : name
+    for (let i = 0, m = names.length; i < m; i++) {
+      let n = names[i]
+      if (!this.arrs.some(a => {
+        if (a.name === n) {
+          ids.forEach(i => {
+            if (a.arr.indexOf(i) === -1) {
+              a.arr.push(i)
+            }
+          })
+          return true
+        }
+      })) {
+        this.arrs.push({
+          name: n,
+          arr: ids
         })
-        return true
       }
-    })) {
-      this.arrs.push({
-        name: name,
-        arr: ids
-      })
     }
   }
   public addName(name: string) {
