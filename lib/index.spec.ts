@@ -82,4 +82,34 @@ describe('NumberArrayManager', () => {
     expect(NAM.every(name1, [0, 3, 2])).to.equal(true)
     expect(NAM.every(name1, [0, 3, 2, 42])).to.equal(false)
   })
+  it('it can process multiple list without data loss', () => {
+    let nameList: string[] = []
+    let amount = 1
+    function i2name(i: number): string {
+      return 'n' + i
+    }
+    for (let i = 0; i < amount; i++) {
+      nameList.push(i2name(i))
+    }
+    nameList.forEach((i) => {
+      // For exteme speed - two orders at once:
+      NAM.add(i, arr1a)
+      NAM.add(i + 'b', arr1a)
+    })
+    for (let i = 0; i < amount; i++) {
+      expect(NAM.every(i2name(i), arr1a)).to.equal(true)
+    }
+    nameList.forEach((i) => {
+      // For exteme speed - two orders at once:
+      NAM.add(i, arr1b)
+      NAM.add(i + 'b', arr1a)
+    })
+    for (let i = 0; i < amount; i++) {
+      console.log(NAM.list(i2name(i)))
+      console.log(NAM.list(i2name(i) + 'b'))
+      expect(arr1b.every(a => NAM.list(i2name(i)).some(l => l === a))).to.equal(true)
+      expect(arr1b.every(a => NAM.list(i2name(i) + 'b').some(l => l === a))).to.equal(true)
+    }
+
+  })
 })

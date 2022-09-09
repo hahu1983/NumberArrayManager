@@ -1,6 +1,6 @@
 {
   "name": "numberarraymanager",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "This packages manages number arrays by name. You can add arrays by name, ad elements to the arrays (and the values are unique automatically) and it checks if one or all, or some values of a given array are in the requested array.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

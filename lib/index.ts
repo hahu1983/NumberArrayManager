@@ -6,12 +6,21 @@ export default class NumberArrayManager {
   arrs: NumArr[] = []
 
   public add(name: string, ids: number[]): void {
-    const nameContent = this.getName(name)
-    ids.forEach(id => {
-      if (nameContent.arr.indexOf(id) === -1) {
-        nameContent.arr.push(id)
+    if (!this.arrs.some(a => {
+      if (a.name === name) {
+        ids.forEach(i => {
+          if (a.arr.indexOf(i) === -1) {
+            a.arr.push(i)
+          }
+        })
+        return true
       }
-    })
+    })) {
+      this.arrs.push({
+        name: name,
+        arr: ids
+      })
+    }
   }
   public addName(name: string) {
     if (!this.hasName(name)) {
@@ -54,5 +63,8 @@ export default class NumberArrayManager {
   public list(name: string): number[] {
     const nameContent = this.getName(name)
     return nameContent.arr
+  }
+  public showAll() {
+    return this.arrs
   }
 }
