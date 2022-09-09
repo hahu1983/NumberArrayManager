@@ -93,6 +93,7 @@ const name2 = 'name2';
             // For exteme speed - two orders at once:
             NAM.add(i, arr1a);
             NAM.add(i + 'b', arr1a);
+            NAM.add([i + 'c', i + 'd'], arr1a);
         });
         for (let i = 0; i < amount; i++) {
             (0, chai_1.expect)(NAM.every(i2name(i), arr1a)).to.equal(true);
@@ -100,13 +101,16 @@ const name2 = 'name2';
         nameList.forEach((i) => {
             // For exteme speed - two orders at once:
             NAM.add(i, arr1b);
-            NAM.add(i + 'b', arr1a);
+            NAM.add(i + 'b', arr1b);
+            NAM.add([i + 'c', i + 'd'], arr1b);
         });
         for (let i = 0; i < amount; i++) {
             console.log(NAM.list(i2name(i)));
             console.log(NAM.list(i2name(i) + 'b'));
             (0, chai_1.expect)(arr1b.every(a => NAM.list(i2name(i)).some(l => l === a))).to.equal(true);
             (0, chai_1.expect)(arr1b.every(a => NAM.list(i2name(i) + 'b').some(l => l === a))).to.equal(true);
+            (0, chai_1.expect)(arr1b.every(a => NAM.list(i2name(i) + 'c').some(l => l === a))).to.equal(true);
+            (0, chai_1.expect)(arr1b.every(a => NAM.list(i2name(i) + 'd').some(l => l === a))).to.equal(true);
         }
     });
 });
