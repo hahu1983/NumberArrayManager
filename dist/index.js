@@ -5,12 +5,25 @@ class NumberArrayManager {
         this.arrs = [];
     }
     add(name, ids) {
-        const nameContent = this.getName(name);
-        ids.forEach(id => {
-            if (nameContent.arr.indexOf(id) === -1) {
-                nameContent.arr.push(id);
+        const names = typeof name === 'string' ? [name] : name;
+        for (let i = 0, m = names.length; i < m; i++) {
+            let n = names[i];
+            if (!this.arrs.some(a => {
+                if (a.name === n) {
+                    ids.forEach(i => {
+                        if (a.arr.indexOf(i) === -1) {
+                            a.arr.push(i);
+                        }
+                    });
+                    return true;
+                }
+            })) {
+                this.arrs.push({
+                    name: n,
+                    arr: ids
+                });
             }
-        });
+        }
     }
     addName(name) {
         if (!this.hasName(name)) {
@@ -25,6 +38,9 @@ class NumberArrayManager {
             this.addName(name);
         }
         return this.arrs.find(a => a.name === name) || { name: 'empty', arr: [] };
+    }
+    delete(name) {
+        this.arrs = this.arrs.filter(i => i.name !== name);
     }
     remove(name, ids) {
         const nameContent = this.getName(name);
@@ -52,6 +68,9 @@ class NumberArrayManager {
     list(name) {
         const nameContent = this.getName(name);
         return nameContent.arr;
+    }
+    showAll() {
+        return this.arrs;
     }
 }
 exports.default = NumberArrayManager;
